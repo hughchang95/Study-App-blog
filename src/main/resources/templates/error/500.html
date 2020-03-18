@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="commons/header::blogheader('博客详情')"></head>
+<body class="m-background">
+<!--导航-->
+<div th:replace="commons/navigator::navigator(0)"></div>
+<div class="m-container-small m-padded-extra"></div>
+<div class="m-container-small m-padded-extra">
+    <div class="ui error message">
+        <div class="ui container">
+            <h2>500</h2>
+            <p>服务器正在开小差...</p>
+        </div>
+    </div>
+</div>
+<div class="m-container-small m-padded-extra"></div>
+<!--底部-->
+<div th:replace="commons/footer::footer"></div>
+<!--脚本-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.js"></script>
+<script>
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+</script>
+</body>
+</html>

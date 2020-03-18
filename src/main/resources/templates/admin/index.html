@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="commons/header::header('博客管理')"></head>
+<body class="m-background">
+<!--导航-->
+<div th:replace="commons/navigator::adminnavigator"></div>
+<div class="ui inverted attached pointing menu">
+    <div class="ui container">
+        <div class="right  menu">
+            <a href="#" class="item">发布</a>
+            <a href="#" class=" item">列表</a>
+        </div>
+    </div>
+</div>
+<!--中间内容-->
+<div class="m-padded-large m-container-small">
+    <div class="ui container">
+        <div class="m-container-small m-padded-extra"></div>
+        <div class="m-container-small m-padded-extra">
+            <div class="ui success message">
+                <div class="ui container">
+                    <h2>Hugh</h2>
+                    <p>欢迎回来！</p>
+                </div>
+            </div>
+        </div>
+        <div class="m-container-small m-padded-extra"></div>
+    </div>
+</div>
+
+<!--底部-->
+<div th:replace="commons/footer::footer"></div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.js"></script>
+<script>
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+
+    $('.ui.dropdown').dropdown({
+        on : 'hover'
+    });
+</script>
+</body>
+</html>

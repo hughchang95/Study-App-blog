@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="commons/header::header('归档')"></head>
+<body class="m-background">
+<!--导航-->
+<div th:replace="commons/navigator::navigator(4)"></div>
+<!--中间内容-->
+<div class="m-padded-large m-container-small" style="height: 800px!important;">
+    <div class="ui container">
+        <!--头部-->
+        <div class="ui top attached segment">
+            <div align="middle" class="ui two column grid">
+                <div class="column">
+                    <h3 class="ui m-red header">归档</h3>
+                </div>
+                <div align="right" class="column">
+                    共 <h3 class="ui m-red header m-inline-block m-text-thin" th:text="${blogCount}">113</h3> 篇博客
+                </div>
+            </div>
+        </div>
+
+        <th:block th:each="item : ${archiveMap}">
+            <h3 class="ui center m-white aligned header" th:text="${item.key}">2020</h3>
+            <div class="ui fluid vertical menu">
+                <a href="#" th:href="@{/front/blog/{id}(id=${blog.id})}" target="_blank" class="item" th:each="blog : ${item.value}">
+          <span>
+            <i class="mini red circle icon"></i><span th:text="${blog.title}">关于刻意练习的清单</span>
+            <div class="ui red left pointing label m-padded-mini " th:text="${#dates.format(blog.updateTime,'MM-dd')}">9月03</div>
+          </span>
+                    <div class="ui basic red left pointing label m-padded-mini " th:text="${blog.flag}">原创</div>
+                </a>
+            </div>
+        </th:block>
+
+
+    </div>
+</div>
+
+<!--底部-->
+<div th:replace="commons/footer::footer"></div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.js"></script>
+<script>
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+
+</script>
+</body>
+</html>

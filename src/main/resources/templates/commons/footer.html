@@ -1,0 +1,32 @@
+<footer th:fragment="footer" class="ui inverted vertical segment m-padded-massive">
+    <div align="center" class="ui container">
+        <div class="ui inverted divided stackable grid ">
+            <div class="four wide column">
+                <img th:src="@{/images/weChatQR.jpg}" class="ui rounded image" alt="" style="width: 100px">
+            </div>
+            <div class="four wide column ">
+                <h4 class="ui inverted header  m-text-spaced m-opacity-mini">友情链接</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item"></a>
+                    <a href="#" class="item"></a>
+                    <a href="#" class="item"></a>
+                </div>
+            </div>
+            <div class="four wide column ">
+                <h4 class="ui inverted header  m-text-spaced m-opacity-mini">联系我</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item" th:text="#{index.email}">Email：zhanghaozhe95@163.com</a>
+                    <a href="#" class="item">QQ:85801704</a>
+                </div>
+            </div>
+            <div class="four wide column ">
+                <h4 class="ui inverted header m-text-spaced m-opacity-mini">Blog</h4>
+                <p class="m-text-spaced m-opacity-mini">这是我的个人博客...</p>
+            </div>
+        </div>
+        <div>
+            <div class="ui inverted section divider"></div>
+            <p class="m-text-thin m-text-spaced m-opacity-mini">Copyright...</p>
+        </div>
+    </div>
+</footer>

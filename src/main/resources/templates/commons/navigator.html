@@ -1,0 +1,56 @@
+<nav th:fragment="navigator(n)" class="ui inverted attached segment m-padded-tiny">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui m-red header item ">Hugh's Blog</h2>
+            <a href="#" th:href="@{/front}" th:classappend="${n==1} ? 'active'" class="m-item item m-mobile-hide"><i
+                    class="home icon"></i>首页</a>
+            <a href="#" th:href="@{/front/types/-1}" th:classappend="${n==2} ? 'active'"
+               class="m-item item m-mobile-hide"><i class="bars icon"></i>分类</a>
+            <a href="#" th:href="@{/front/tags/-1}" th:classappend="${n==3} ? 'active'"
+               class="m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
+            <a href="#" th:href="@{/front/archives}" th:classappend="${n==4} ? 'active'"
+               class="m-item item m-mobile-hide"><i class="clone icon"></i>归档</a>
+            <a href="#" th:href="@{/front/about}" th:classappend="${n==5} ? 'active'" class="m-item item m-mobile-hide"><i
+                    class="user circle icon"></i>关于我</a>
+            <div class="right m-item item m-mobile-hide">
+                <form name="search" th:action="@{/front/search}" method="post" target="_blank">
+                    <div class="ui icon transparent inverted input m-padded-tiny">
+                        <input name="query" type="text" placeholder="搜索..." th:value="${query}">
+                        <button type="submit" class="circular ui icon button">
+                            <i class="search icon"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="expand icon"></i>
+    </a>
+</nav>
+
+<nav th:fragment="adminnavigator" class="ui inverted attached segment m-padded-tiny">
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui m-red header item ">Hugh's Blog 后台</h2>
+            <a th:href="@{/admin/blogs}" class="m-item item m-mobile-hide"><i class="home icon"></i>博客</a>
+            <a th:href="@{/admin/types}" class="m-item item m-mobile-hide"><i class="bars icon"></i>分类</a>
+            <a th:href="@{/admin/tags}" class="m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
+            <div class="right m-item m-mobile-hide menu">
+                <div class="ui dropdown  item">
+                    <div class="text">
+                        <img class="ui avatar image" th:src="@{/images/icon.jpg}">
+                        <span th:text="${session.user.nickname}">Hugh</span>
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a th:href="@{/admin/logout}" class="item">注销</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="expand icon"></i>
+    </a>
+</nav>
