@@ -1,9 +1,8 @@
-package com.hugh.blog.web.front;
+package com.hugh.blog.controller.front;
 
 import com.hugh.blog.service.BlogService;
 import com.hugh.blog.service.TagService;
 import com.hugh.blog.service.TypeService;
-import com.hugh.blog.vo.BlogQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -47,6 +46,7 @@ public class IndexController {
     @GetMapping("/blog/{id}")
     public String blog(@PathVariable Long id,Model model){
         model.addAttribute("blog",blogService.getAndConvert(id));
+
         return "front/blog";
     }
 

@@ -1,4 +1,4 @@
-package com.hugh.blog.web.front;
+package com.hugh.blog.controller.front;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

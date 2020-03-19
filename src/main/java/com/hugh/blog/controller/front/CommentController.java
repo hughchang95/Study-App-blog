@@ -1,4 +1,4 @@
-package com.hugh.blog.web.front;
+package com.hugh.blog.controller.front;
 
 import com.hugh.blog.po.Comment;
 import com.hugh.blog.po.User;

@@ -1,4 +1,4 @@
-package com.hugh.blog.web.front;
+package com.hugh.blog.controller.front;
 
 import com.hugh.blog.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class ArchiveShowController {
     @GetMapping("/archives")
     public String archives(Model model){
         model.addAttribute("archiveMap",blogService.listArchiveBlog());
-        model.addAttribute("blogCount",blogService.countBlod());
+        model.addAttribute("blogCount",blogService.countBlog());
         return "front/archives";
     }
 }

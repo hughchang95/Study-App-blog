@@ -1,9 +1,8 @@
-package com.hugh.blog.web.front;
+package com.hugh.blog.controller.front;
 
-import com.hugh.blog.po.Type;
+import com.hugh.blog.po.Tag;
 import com.hugh.blog.service.BlogService;
-import com.hugh.blog.service.TypeService;
-import com.hugh.blog.vo.BlogQuery;
+import com.hugh.blog.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -18,25 +17,25 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/front")
-public class TypeShowController {
+public class TagShowController {
 
     @Autowired
-    TypeService typeService;
+    TagService tagService;
 
     @Autowired
     BlogService blogService;
 
-    @GetMapping("/types/{id}")
+    @GetMapping("/tags/{id}")
     public String types(@PathVariable Long id,
                         @PageableDefault(size = 8, sort = {"updateTime"}, direction = Sort.Direction.DESC) Pageable pageable,
                         Model model){
-        List<Type> types = typeService.listTypeTop(100);
+        List<Tag> tags = tagService.listTagTop(100);
         if (id==-1){
-            id=types.get(0).getId();
+            id=tags.get(0).getId();
         }
-        model.addAttribute("types",types);
-        model.addAttribute("page",blogService.listTypeBlog(id,pageable));
-        model.addAttribute("activeTypeId",id);
-        return "front/types";
+        model.addAttribute("tags",tags);
+        model.addAttribute("page",blogService.listTagBlog(id,pageable));
+        model.addAttribute("activeTagId",id);
+        return "front/tags";
     }
 }

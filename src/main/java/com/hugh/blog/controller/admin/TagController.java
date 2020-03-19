@@ -1,7 +1,7 @@
-package com.hugh.blog.web.admin;
+package com.hugh.blog.controller.admin;
 
-import com.hugh.blog.po.Type;
-import com.hugh.blog.service.TypeService;
+import com.hugh.blog.po.Tag;
+import com.hugh.blog.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -19,75 +19,75 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/admin")
-public class TypeController {
+public class TagController {
 
     @Autowired
-    TypeService typeService;
+    TagService tagService;
 
-    @GetMapping("/types")
+    @GetMapping("/tags")
     public String list(@PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC)
                                Pageable pageable,
                        Model model) {
-        model.addAttribute("page", typeService.listType(pageable));
-        return "admin/types";
+        model.addAttribute("page", tagService.listTag(pageable));
+        return "admin/tags";
     }
 
-    @GetMapping("/types/input")
+    @GetMapping("/tags/input")
     public String input(Model model){
-        model.addAttribute("type",new Type());
-        return "admin/types_input";
+        model.addAttribute("tag",new Tag());
+        return "admin/tags_input";
     }
 
-    @PostMapping("/types")
-    public String post(@Valid Type type, BindingResult result,
+    @PostMapping("/tags")
+    public String post(@Valid Tag Tag, BindingResult result,
                        RedirectAttributes attributes){
-        Type typeByName = typeService.getTypeByName(type.getName());
-        if (typeByName!=null){
-            result.rejectValue("name","nameError","该分类已存在");
+        Tag TagByName = tagService.getTagByName(Tag.getName());
+        if (TagByName!=null){
+            result.rejectValue("name","nameError","该标签已存在");
         }
         if(result.hasErrors()){
-            return "admin/types_input";
+            return "admin/tags_input";
         }
-        Type t=typeService.saveType(type);
+        Tag t=tagService.saveTag(Tag);
         if (t==null){
             attributes.addFlashAttribute("message","操作失败");
         }else {
             attributes.addFlashAttribute("message","操作成功");
         }
-        return "redirect:/admin/types";
+        return "redirect:/admin/tags";
     }
 
-    @GetMapping("/types/{id}/input")
+    @GetMapping("/tags/{id}/input")
     public String editInput(@PathVariable Long id, Model model){
-        model.addAttribute("type",typeService.getType(id));
-        return "admin/types_input";
+        model.addAttribute("tag",tagService.getTag(id));
+        return "admin/tags_input";
     }
 
-    @PostMapping("/types/{id}")
-    public String editPost(@Valid Type type, BindingResult result,
+    @PostMapping("/tags/{id}")
+    public String editPost(@Valid Tag Tag, BindingResult result,
                            @PathVariable Long id,
                            RedirectAttributes attributes){
-        Type typeByName = typeService.getTypeByName(type.getName());
-        if (typeByName!=null){
+        Tag TagByName = tagService.getTagByName(Tag.getName());
+        if (TagByName!=null){
             result.rejectValue("name","nameError","该分类已存在");
         }
         if(result.hasErrors()){
-            return "admin/types_input";
+            return "admin/tags_input";
         }
-        Type t=typeService.updateType(id,type);
+        Tag t=tagService.updateTag(id,Tag);
         if (t==null){
             attributes.addFlashAttribute("message","更新失败");
         }else {
             attributes.addFlashAttribute("message","更新成功");
         }
-        return "redirect:/admin/types";
+        return "redirect:/admin/tags";
     }
 
-    @GetMapping("/types/{id}/delete")
+    @GetMapping("/tags/{id}/delete")
     public String delete(@PathVariable Long id, RedirectAttributes attributes){
-        typeService.deleteType(id);
+        tagService.deleteTag(id);
         attributes.addFlashAttribute("message","删除成功");
-        return "redirect:/admin/types";
+        return "redirect:/admin/tags";
     }
 
 }

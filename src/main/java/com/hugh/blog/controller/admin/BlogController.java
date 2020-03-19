@@ -1,4 +1,4 @@
-package com.hugh.blog.web.admin;
+package com.hugh.blog.controller.admin;
 
 import com.hugh.blog.po.Blog;
 import com.hugh.blog.po.User;

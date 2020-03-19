@@ -34,5 +34,5 @@ public interface BlogService {
 
     void deleteBlog(Long id);
 
-    Long countBlod();
+    Long countBlog();
 }

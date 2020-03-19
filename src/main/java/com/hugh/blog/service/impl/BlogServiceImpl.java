@@ -7,6 +7,8 @@ import com.hugh.blog.repository.BlogRepository;
 import com.hugh.blog.service.BlogService;
 import com.hugh.blog.utils.MarkdownUtils;
 import com.hugh.blog.utils.MyBeanUtils;
+import com.hugh.blog.utils.RedisUtil;
+import com.hugh.blog.utils.ViewCountUtil;
 import com.hugh.blog.vo.BlogQuery;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class BlogServiceImpl implements BlogService {
     @Autowired
     BlogRepository blogRepository;
 
+    @Autowired
+    ViewCountUtil viewCountUtil;
+
     @Override
     public Blog getBlog(Long id) {
         return blogRepository.findById(id).get();
@@ -42,8 +47,12 @@ public class BlogServiceImpl implements BlogService {
         //避免操作数据库
         Blog b=new Blog();
         BeanUtils.copyProperties(blog,b);
+        //获取内容并返回
         String content=b.getContent();
         b.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
+
+        b.setViews(viewCountUtil.getAndincrement(b));
+
         return b;
     }
 
@@ -190,7 +199,7 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public Long countBlod() {
+    public Long countBlog() {
         return blogRepository.count();
     }
 }
